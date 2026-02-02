@@ -19,6 +19,12 @@ namespace Shared.Services
 
         Task<Guid> GetConnectionId();
 
-        Task MoveAsync(Vector3 pos, Quaternion rot, long tick);
+        Task MoveAsync(Vector3 pos, Quaternion rot, long tick, int lapCount, int CheckPoint, float distanceToNext);
+
+        Task ReadyAsync(Guid connectionId);
+
+        Task StartAsync();
+
+        Task GoalAsync(Guid connectionId);
     }
 }

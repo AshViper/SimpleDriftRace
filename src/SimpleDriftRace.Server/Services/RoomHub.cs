@@ -45,6 +45,14 @@ namespace Server.Services
                 "Join request. Room={Room}, User={User}, ConnectionId={ConnectionId}",
                 roomName, userName, ConnectionId);
 
+            var joinedUser = new JoinedUser
+            {
+                ConnectionId = ConnectionId,
+                UserName = userName,
+                IsOwner = false,
+                IsReady = false
+            };
+
             // Room 取得 or 作成（排他）
             lock (roomContextRepository)
             {
@@ -53,6 +61,13 @@ namespace Server.Services
                 {
                     roomContext = roomContextRepository.CreateContext(roomName);
                     isRoomCreated = true;
+                    joinedUser = new JoinedUser
+                    {
+                        ConnectionId = ConnectionId,
+                        UserName = userName,
+                        IsOwner = true,
+                        IsReady = true
+                    };
                 }
             }
 
@@ -68,17 +83,12 @@ namespace Server.Services
             // グループ参加
             roomContext.Group.Add(ConnectionId, Client);
 
-            var joinedUser = new JoinedUser
-            {
-                ConnectionId = ConnectionId,
-                UserName = userName
-            };
+            joinedUser.FstPos = new Vector3((float) -6.5 + (roomContext.RoomUserDataList.Count() * 3), 0, -10);
 
             roomContext.RoomUserDataList[ConnectionId] =
                 new RoomUserData
                 {
-                    JoinedUser = joinedUser,
-                    Position = Vector3.zero
+                    JoinedUser = joinedUser
                 };
 
             logger.LogInformation(
@@ -87,18 +97,14 @@ namespace Server.Services
                 roomContext.RoomUserDataList.Count);
 
             // 他ユーザーへ通知
-            roomContext.Group
-                .Except([ConnectionId])
-                .OnJoin(joinedUser);
+            roomContext.Group.Except([ConnectionId]).OnJoin(joinedUser);
 
             logger.LogInformation(
                 "Join notification sent. Room={Room}, JoinedUser={User}",
                 roomName, userName);
 
             // 参加者一覧を返却
-            return roomContext.RoomUserDataList
-                .Select(x => x.Value.JoinedUser)
-                .ToArray();
+            return roomContext.RoomUserDataList.Select(x => x.Value.JoinedUser).ToArray();
         }
 
         // =========================
@@ -209,20 +215,92 @@ namespace Server.Services
             return Task.CompletedTask;
         }
 
-        public Task MoveAsync(Vector3 pos, Quaternion rot, long tick)
+        public Task MoveAsync(Vector3 pos, Quaternion rot, long tick, int lapCount, int checkPoint, float distanceToNext)
         {
             if (roomContext == null) return Task.CompletedTask;
 
-            if (!roomContext.RoomUserDataList.TryGetValue(ConnectionId, out var userData))return Task.CompletedTask;
+            if (!roomContext.RoomUserDataList.TryGetValue(ConnectionId, out var userData))
+                return Task.CompletedTask;
 
-            // 他クライアントに通知
-            roomContext.Group
-                .Except([ConnectionId])
-                .OnMove(ConnectionId, pos, rot, tick);
+            // 1. サーバー側のユーザーデータを更新
+            // (RoomUserDataクラスにLapCountとCheckPointプロパティがあると仮定)
+            userData.LapCount = lapCount;
+            userData.CheckPoint = checkPoint;
+            userData.DistanceToNext = distanceToNext;
+
+            // 2. 全ユーザーをソートして順位を決定
+            var sortedList = roomContext.RoomUserDataList.Values
+                .OrderByDescending(u => u.LapCount)      // 1. 周回数が多い順
+                .ThenByDescending(u => u.CheckPoint)    // 2. 同じ周回ならCPが進んでいる順
+                .ThenBy(u => u.DistanceToNext)          // 3. 同じCPなら次の点に近い順
+                .ToList();
+
+            // 自分の順位を取得 (Listは0から始まるので +1 する)
+            int ranking = sortedList.IndexOf(userData) + 1;
+
+            // 3. 他クライアントに通知（算出した順位を含める）
+            roomContext.Group.All.OnMove(ConnectionId, pos, rot, tick, ranking);
 
             return Task.CompletedTask;
         }
 
-        
+        public Task ReadyAsync(Guid connectionId)
+        {
+            roomContext.RoomUserDataList[connectionId].JoinedUser.IsReady = true;
+            roomContext.Group.Except([ConnectionId]).OnReady(roomContext.RoomUserDataList[connectionId].JoinedUser);
+            return Task.CompletedTask;
+        }
+
+        public Task StartAsync()
+        {
+            logger.LogInformation("Game Start");
+
+            Vector3 startBasePos = new Vector3(-36f, 0f, -31.5f);
+            Vector3 startOffset = new Vector3(2f, 0f, 5f);
+
+            int index = 0;
+
+            foreach (var kv in roomContext.RoomUserDataList)
+            {
+                var userData = kv.Value;
+                Vector3 startPos = startBasePos + startOffset * index;
+
+                userData.JoinedUser.FstPos = startPos;
+                index++;
+            }
+
+            // 全員に「スタート通知 + 位置確定」を送信
+            roomContext.Group.All.OnStart(roomContext.RoomUserDataList.Values
+                .Select(u => u.JoinedUser)
+                .ToList());
+
+            return Task.CompletedTask;
+        }
+
+        public Task GoalAsync(Guid connectionId)
+        {
+            if (roomContext == null) return Task.CompletedTask;
+
+            if (roomContext.RoomUserDataList.TryGetValue(connectionId, out var userData))
+            {
+                userData.IsGoaled = true;
+
+                // 1. ゴールした本人に通知（個別のリザルト表示用など）
+                // roomContext.Group.Id(connectionId).OnGoalMember(connectionId);
+            }
+
+            // 2. 全員がゴールしたかチェック
+            int totalUsers = roomContext.RoomUserDataList.Count;
+            int goaledUsers = roomContext.RoomUserDataList.Values.Count(u => u.IsGoaled);
+
+            if (goaledUsers >= totalUsers)
+            {
+                // 全員ゴールしたので、全員に終了合図（OnGameFinish）を送る
+                // 引数として最終的なランキングリストなどを送ると親切です
+                roomContext.Group.All.OnGameFinish();
+            }
+
+            return Task.CompletedTask;
+        }
     }
 }

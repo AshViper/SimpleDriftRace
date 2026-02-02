@@ -14,7 +14,7 @@ namespace Server.Services
         {
             var context = new RoomContext(groupProvider, roomName);
             contexts[roomName] = context;
-            return context;
+            return context; 
         }
         // ルームコンテキストの取得
         public RoomContext GetContext(string roomName)

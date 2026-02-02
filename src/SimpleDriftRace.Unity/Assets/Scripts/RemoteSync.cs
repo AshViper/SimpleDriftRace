@@ -6,7 +6,7 @@ public class RemoteSync : MonoBehaviour
     Quaternion prevRot, nextRot;
     float lerpTimer;
 
-    const float syncInterval = 0.05f;
+    const float syncInterval = 0.025f;
 
     void Update()
     {

@@ -1,0 +1,30 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "タイトル",
+    "description": "説明",
+    "version": "v1"
+  },
+  "paths": {
+    "/": {
+      "get": {
+        "tags": [
+          "SimpleDriftRace.Server"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": { }
+}

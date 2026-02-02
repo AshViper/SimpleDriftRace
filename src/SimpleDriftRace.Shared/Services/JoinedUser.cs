@@ -1,5 +1,6 @@
 ﻿using MessagePack;
 using System;
+using UnityEngine;
 
 namespace Shared.Services
 {
@@ -14,6 +15,10 @@ namespace Shared.Services
         [Key(1)]
         public string UserName { get; set; }// ユーザーの名前
         [Key(2)]
-        public int JoinOrder { get; set; } // 参加順番
+        public bool IsOwner { get; set; } // ホストかどうか
+        [Key(3)]
+        public bool IsReady { get; set; } // Ready
+        [Key(4)]
+        public Vector3 FstPos { get; set; }
     }
 }

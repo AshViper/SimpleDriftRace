@@ -31,7 +31,12 @@ public class CameraFollow : MonoBehaviour
 
     void LateUpdate()
     {
-        if (target == null) return;
+        if (target == null) 
+        {
+            transform.position = new Vector3(0, 3.64f, -19.05f);
+            transform.rotation = Quaternion.Euler(12.516f, 0, 0);
+            return;
+        }
 
         Rigidbody rb = target.GetComponent<Rigidbody>();
 

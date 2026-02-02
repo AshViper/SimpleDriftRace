@@ -1,0 +1,15 @@
+C:\Git\SimpleDriftRace\tools\RepoInitializer\bin\Debug\net8.0\RepoInitializer.exe
+C:\Git\SimpleDriftRace\tools\RepoInitializer\bin\Debug\net8.0\RepoInitializer.deps.json
+C:\Git\SimpleDriftRace\tools\RepoInitializer\bin\Debug\net8.0\RepoInitializer.runtimeconfig.json
+C:\Git\SimpleDriftRace\tools\RepoInitializer\bin\Debug\net8.0\RepoInitializer.dll
+C:\Git\SimpleDriftRace\tools\RepoInitializer\bin\Debug\net8.0\RepoInitializer.pdb
+C:\Git\SimpleDriftRace\tools\RepoInitializer\obj\Debug\net8.0\RepoInitializer.GeneratedMSBuildEditorConfig.editorconfig
+C:\Git\SimpleDriftRace\tools\RepoInitializer\obj\Debug\net8.0\RepoInitializer.AssemblyInfoInputs.cache
+C:\Git\SimpleDriftRace\tools\RepoInitializer\obj\Debug\net8.0\RepoInitializer.AssemblyInfo.cs
+C:\Git\SimpleDriftRace\tools\RepoInitializer\obj\Debug\net8.0\RepoInitializer.csproj.CoreCompileInputs.cache
+C:\Git\SimpleDriftRace\tools\RepoInitializer\obj\Debug\net8.0\RepoInitializer.sourcelink.json
+C:\Git\SimpleDriftRace\tools\RepoInitializer\obj\Debug\net8.0\RepoInitializer.dll
+C:\Git\SimpleDriftRace\tools\RepoInitializer\obj\Debug\net8.0\refint\RepoInitializer.dll
+C:\Git\SimpleDriftRace\tools\RepoInitializer\obj\Debug\net8.0\RepoInitializer.pdb
+C:\Git\SimpleDriftRace\tools\RepoInitializer\obj\Debug\net8.0\RepoInitializer.genruntimeconfig.cache
+C:\Git\SimpleDriftRace\tools\RepoInitializer\obj\Debug\net8.0\ref\RepoInitializer.dll

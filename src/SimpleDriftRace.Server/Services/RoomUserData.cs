@@ -10,5 +10,9 @@ namespace Server.Services
         public Vector3 Position;
         public Quaternion Rotation;
         public long Tick;
+        public int LapCount;
+        public int CheckPoint;
+        public float DistanceToNext;
+        public bool IsGoaled = false;
     }
 }

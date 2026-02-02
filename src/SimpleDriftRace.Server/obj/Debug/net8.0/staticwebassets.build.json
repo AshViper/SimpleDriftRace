@@ -1,0 +1,12 @@
+{
+  "Version": 1,
+  "Hash": "TBU4nT9nLrOZcINHY9WHyZy0V+FDAWZU8zXOBnKUAN8=",
+  "Source": "SimpleDriftRace.Server",
+  "BasePath": "_content/SimpleDriftRace.Server",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": [],
+  "Endpoints": []
+}

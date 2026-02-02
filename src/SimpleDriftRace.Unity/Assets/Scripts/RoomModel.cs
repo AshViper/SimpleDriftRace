@@ -4,6 +4,7 @@ using MagicOnion;
 using Shared.Services;
 using System;
 using UnityEngine;
+using System.Collections.Generic;
 
 public class RoomModel : BaseModel, IRoomHubReceiver
 {
@@ -16,7 +17,10 @@ public class RoomModel : BaseModel, IRoomHubReceiver
     //　ユーザー接続通知
     public Action<JoinedUser> OnJoinedUser { get; set; }
     public Action<Guid> OnLeavedUser { get; set; }
-    public Action<Guid, Vector3, Quaternion, long> OnMovedUser { get; set; }
+    public Action<Guid, Vector3, Quaternion, long, int> OnMovedUser { get; set; }
+    public Action<JoinedUser> OnReadyUser { get; set; }
+    public Action<List<JoinedUser>> OnStartUser { get; set; }
+    public Action OnGameFinishUser { get; set; }
 
     //　MagicOnion接続処理
     public async UniTask ConnectAsync()
@@ -40,7 +44,6 @@ public class RoomModel : BaseModel, IRoomHubReceiver
             throw; // 呼び出し側で失敗を検知したい場合
         }
     }
-
     //　MagicOnion切断処理
     public async UniTask DisconnectAsync()
     {
@@ -48,7 +51,6 @@ public class RoomModel : BaseModel, IRoomHubReceiver
         if (channel != null) await channel.ShutdownAsync();
         roomHub = null; channel = null;
     }
-
     //　破棄処理 
     async void OnDestroy()
     {
@@ -66,16 +68,27 @@ public class RoomModel : BaseModel, IRoomHubReceiver
             }
         }
     }
-
     public async UniTask LeaveAsync()
     {
         await roomHub.LeaveAsync();
     }
-
-    public async UniTask MoveAsync(Vector3 pos, Quaternion rot, long tick)
+    public async UniTask MoveAsync(Vector3 pos, Quaternion rot, long tick, int lapCount, int CheckPoint, float distanceToNext)
     {
-        await roomHub.MoveAsync(pos, rot, tick);
+        await roomHub.MoveAsync(pos, rot, tick, lapCount, CheckPoint, distanceToNext);
     }
+    public async UniTask ReadyAsync()
+    {
+        await roomHub.ReadyAsync(ConnectionId);
+    }
+    public async UniTask StartAsync()
+    {
+        await roomHub.StartAsync();
+    }
+    public async UniTask GoalAsync(Guid connectionId)
+    {
+        await roomHub.GoalAsync(connectionId);
+    }
+
 
     //　入室通知 (IRoomHubReceiverインタフェースの実装)
     public void OnJoin(JoinedUser user)
@@ -85,7 +98,6 @@ public class RoomModel : BaseModel, IRoomHubReceiver
             OnJoinedUser(user);
         }
     }
-
     public void OnLeave(Guid connectionId)
     {
         if (OnLeavedUser != null)
@@ -93,12 +105,32 @@ public class RoomModel : BaseModel, IRoomHubReceiver
             OnLeavedUser(connectionId);
         }
     }
-
-    public void OnMove(Guid connectionId, Vector3 pos, Quaternion rot, long tick)
+    public void OnMove(Guid connectionId, Vector3 pos, Quaternion rot, long tick, int ranking)
     {
         if (OnMovedUser != null)
         {
-            OnMovedUser(connectionId, pos, rot, tick);
+            OnMovedUser(connectionId, pos, rot, tick, ranking);
+        }
+    }
+    public void OnReady(JoinedUser user)
+    {
+        if (OnReadyUser != null)
+        {
+            OnReadyUser(user);
+        }
+    }
+    public void OnStart(List<JoinedUser> users)
+    {
+        if (OnStartUser != null)
+        {
+            OnStartUser(users);
+        }
+    }
+    public void OnGameFinish()
+    {
+        if (OnGameFinishUser != null)
+        {
+            OnGameFinishUser();
         }
     }
 }
