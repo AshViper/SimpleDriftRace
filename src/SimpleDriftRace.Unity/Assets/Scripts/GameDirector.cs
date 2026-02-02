@@ -77,10 +77,10 @@ public class GameDirector : MonoBehaviour
         int currentCP = car.GetCheckPoint();
 
         // --- ラップ更新ロジック ---
-        if (currentCP >= 36)
+        if (currentCP >= checkPointPositions.Count + 1)
         {
             lapCount++;
-            car.SetCheckPoint(0);
+            car.SetCheckPoint(1);
             currentCP = 0;
         }
 

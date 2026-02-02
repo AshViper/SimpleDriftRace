@@ -6,15 +6,15 @@ public class CameraFollow : MonoBehaviour
     public Transform target;
 
     [Header("Offset")]
-    public Vector3 offset = new Vector3(0f, 4f, -8f);
+    public Vector3 offset = new Vector3(0f, 2f, -8f);
 
     [Header("Smooth")]
     public float positionSmooth = 0.15f;
     public float rotationSmooth = 8f;
 
     [Header("Speed Zoom")]
-    public float minDistance = -6f;
-    public float maxDistance = -12f;
+    public float minDistance = -4f;
+    public float maxDistance = -4f;
     public float maxSpeedKmh = 200f;
 
     [Header("FOV")]
