@@ -13,10 +13,8 @@ public class GameDirector : MonoBehaviour
     public RoomModel roomModel;
     public InputField userName;
     public InputField roomName;
-    public GameObject spawnPoint;
     public CameraFollow CameraFollow;
     public List<Transform> checkPointPositions;
-    public Transform miniMapCamera;
 
     [Header("UI")]
     public List<GameObject> uis;

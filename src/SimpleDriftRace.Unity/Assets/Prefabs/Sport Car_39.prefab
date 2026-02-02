@@ -180,7 +180,7 @@ MonoBehaviour:
   driftSideStiffness: 0.7
   downForce: 50
   antiRollForce: 2500
-  centerOfMassOffset: {x: 0, y: -0.7, z: 0.2}
+  centerOfMassOffset: {x: 0, y: -0.7, z: 0}
   engineAudioSource: {fileID: 4090592149090789023}
   minPitch: 0.7
   maxPitch: 2.5
