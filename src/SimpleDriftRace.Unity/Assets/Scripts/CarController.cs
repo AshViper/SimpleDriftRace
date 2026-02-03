@@ -263,10 +263,10 @@ public class CarController : MonoBehaviour
 
         // 3. 音量の動的変化
         // アイドリングでも少し音を出し、アクセルを踏むとフルボリュームになるよう調整
-        float targetVolume = Mathf.Lerp(0.3f, 1.0f, Mathf.Abs(motorInput));
+        float targetVolume = Mathf.Lerp(0.3f, 0.5f, Mathf.Abs(motorInput));
 
         // バック走行時も少し音を出す
-        if (speedKmh < 5f && Mathf.Abs(motorInput) > 0.1f) targetVolume = 0.1f;
+        if (speedKmh < 5f && Mathf.Abs(motorInput) > 0.1f) targetVolume = 0.6f;
 
         // 滑らかに変化させる（急激な変化によるノイズ防止）
         engineAudioSource.pitch = Mathf.Lerp(engineAudioSource.pitch, targetPitch, Time.fixedDeltaTime * pitchSmoothSpeed);

@@ -1,0 +1,10 @@
+﻿fileFormatVersion: 2
+guid: c1f81ac3e7cd4e8dab5a457996be22eb
+timeCreated: 1749853457
+AssetOrigin:
+  serializedVersion: 1
+  productId: 328076
+  packageName: TND Post Processing Stack V2
+  packageVersion: 3.5.6
+  assetPath: Packages/com.tnd.upscaling/Resources/TND_MergeReactive.shader
+  uploadId: 854492

@@ -174,7 +174,7 @@ MonoBehaviour:
   motorPower: 2500
   brakePower: 5000
   maxSteerAngle: 30
-  maxSpeedKmh: 130
+  maxSpeedKmh: 100
   forwardStiffness: 1.8
   sidewaysStiffness: 2.5
   driftSideStiffness: 0.7
@@ -200,7 +200,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: f78591abc8fdb4341a7a0340905cde59, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.032
+  m_Volume: 0.01
   m_Pitch: 1
   Loop: 1
   Mute: 0

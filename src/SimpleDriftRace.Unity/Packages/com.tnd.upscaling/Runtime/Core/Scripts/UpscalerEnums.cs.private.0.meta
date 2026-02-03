@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 6a60d46f0f1656c4087b6496ecf1661e
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 328076
+  packageName: TND Post Processing Stack V2
+  packageVersion: 3.5.6
+  assetPath: Packages/com.tnd.upscaling/Runtime/Core/Scripts/UpscalerEnums.cs.private.0
+  uploadId: 854492

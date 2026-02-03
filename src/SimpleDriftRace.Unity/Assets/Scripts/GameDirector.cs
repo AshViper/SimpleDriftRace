@@ -76,8 +76,10 @@ public class GameDirector : MonoBehaviour
         CarController car = player.GetComponent<CarController>();
         int currentCP = car.GetCheckPoint();
 
+        if (currentCP == checkPointPositions.Count) currentCP = checkPointPositions.Count - 1;
+
         // --- ラップ更新ロジック ---
-        if (currentCP >= checkPointPositions.Count + 1)
+        if (currentCP >= checkPointPositions.Count)
         {
             lapCount++;
             car.SetCheckPoint(1);
@@ -162,6 +164,7 @@ public class GameDirector : MonoBehaviour
     public async void Ready()
     {
         await roomModel.ReadyAsync();
+        uis[1].SetActive(false); 
     }
 
     public async void GameStart()

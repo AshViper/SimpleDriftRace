@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Git\\SimpleDriftRace\\src\\SimpleDriftRace.Server\\SimpleDriftRace.Server.csproj": {}
+    "C:\\Users\\student\\Documents\\Git\\SimpleDriftRace\\src\\SimpleDriftRace.Server\\SimpleDriftRace.Server.csproj": {}
   },
   "projects": {
-    "C:\\Git\\SimpleDriftRace\\src\\SimpleDriftRace.Server\\SimpleDriftRace.Server.csproj": {
+    "C:\\Users\\student\\Documents\\Git\\SimpleDriftRace\\src\\SimpleDriftRace.Server\\SimpleDriftRace.Server.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Git\\SimpleDriftRace\\src\\SimpleDriftRace.Server\\SimpleDriftRace.Server.csproj",
+        "projectUniqueName": "C:\\Users\\student\\Documents\\Git\\SimpleDriftRace\\src\\SimpleDriftRace.Server\\SimpleDriftRace.Server.csproj",
         "projectName": "SimpleDriftRace.Server",
-        "projectPath": "C:\\Git\\SimpleDriftRace\\src\\SimpleDriftRace.Server\\SimpleDriftRace.Server.csproj",
-        "packagesPath": "C:\\Users\\nagis\\.nuget\\packages\\",
-        "outputPath": "C:\\Git\\SimpleDriftRace\\src\\SimpleDriftRace.Server\\obj\\",
+        "projectPath": "C:\\Users\\student\\Documents\\Git\\SimpleDriftRace\\src\\SimpleDriftRace.Server\\SimpleDriftRace.Server.csproj",
+        "packagesPath": "C:\\Users\\student\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\student\\Documents\\Git\\SimpleDriftRace\\src\\SimpleDriftRace.Server\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\nagis\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\student\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -32,8 +32,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Git\\SimpleDriftRace\\src\\SimpleDriftRace.Shared\\SimpleDriftRace.Shared.csproj": {
-                "projectPath": "C:\\Git\\SimpleDriftRace\\src\\SimpleDriftRace.Shared\\SimpleDriftRace.Shared.csproj"
+              "C:\\Users\\student\\Documents\\Git\\SimpleDriftRace\\src\\SimpleDriftRace.Shared\\SimpleDriftRace.Shared.csproj": {
+                "projectPath": "C:\\Users\\student\\Documents\\Git\\SimpleDriftRace\\src\\SimpleDriftRace.Shared\\SimpleDriftRace.Shared.csproj"
               }
             }
           }
@@ -48,7 +48,7 @@
           "auditLevel": "low",
           "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "9.0.200"
+        "SdkAnalysisLevel": "9.0.100"
       },
       "frameworks": {
         "net8.0": {
@@ -86,24 +86,24 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.203/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.101/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Git\\SimpleDriftRace\\src\\SimpleDriftRace.Shared\\SimpleDriftRace.Shared.csproj": {
+    "C:\\Users\\student\\Documents\\Git\\SimpleDriftRace\\src\\SimpleDriftRace.Shared\\SimpleDriftRace.Shared.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Git\\SimpleDriftRace\\src\\SimpleDriftRace.Shared\\SimpleDriftRace.Shared.csproj",
+        "projectUniqueName": "C:\\Users\\student\\Documents\\Git\\SimpleDriftRace\\src\\SimpleDriftRace.Shared\\SimpleDriftRace.Shared.csproj",
         "projectName": "SimpleDriftRace.Shared",
-        "projectPath": "C:\\Git\\SimpleDriftRace\\src\\SimpleDriftRace.Shared\\SimpleDriftRace.Shared.csproj",
-        "packagesPath": "C:\\Users\\nagis\\.nuget\\packages\\",
-        "outputPath": "C:\\Git\\SimpleDriftRace\\src\\SimpleDriftRace.Shared\\.artifacts\\obj\\SimpleDriftRace.Shared\\",
+        "projectPath": "C:\\Users\\student\\Documents\\Git\\SimpleDriftRace\\src\\SimpleDriftRace.Shared\\SimpleDriftRace.Shared.csproj",
+        "packagesPath": "C:\\Users\\student\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\student\\Documents\\Git\\SimpleDriftRace\\src\\SimpleDriftRace.Shared\\.artifacts\\obj\\SimpleDriftRace.Shared\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\nagis\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\student\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -130,7 +130,7 @@
           "auditLevel": "low",
           "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "9.0.200"
+        "SdkAnalysisLevel": "9.0.100"
       },
       "frameworks": {
         "net8.0": {
@@ -161,7 +161,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.203/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.101/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: cd41751a89786e240b219022c7a4efa1
+AssemblyDefinitionImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 328076
+  packageName: TND Post Processing Stack V2
+  packageVersion: 3.5.6
+  assetPath: Packages/com.tnd.upscaling/Runtime/URP/Utils/TND.Upscaling.Framework.Runtime.URP.Utils.asmdef
+  uploadId: 854492
