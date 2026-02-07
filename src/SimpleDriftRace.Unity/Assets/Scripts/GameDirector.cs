@@ -30,6 +30,9 @@ public class GameDirector : MonoBehaviour
     bool isOwner = false;
     private int lapCount = 0;
     private bool isGoaled = false;
+    // クラスのメンバ変数に追加
+    private List<Guid> spectatingKeys = new List<Guid>();
+    private int currentSpectateIndex = 0;
 
     public bool GetStartFrag()
     {
@@ -54,6 +57,7 @@ public class GameDirector : MonoBehaviour
     {
         isStart = false;
         isSet = false;
+        isGoaled = false;
         lapCount = 0;
         if (player) player.GetComponent<CarController>().SetCheckPoint(0);
         foreach (GameObject button in uis) button.SetActive(false);
@@ -124,9 +128,8 @@ public class GameDirector : MonoBehaviour
 
         // --- ゴール判定 ---
         if (lapCount >= 3 && !isGoaled)
-        {
-            isGoaled = true;
-            await roomModel.GoalAsync(roomModel.ConnectionId);
+        { 
+            GoalAsync();
         }
 
         // UI更新
@@ -141,6 +144,35 @@ public class GameDirector : MonoBehaviour
             currentCP,
             distToNext
         );
+    }
+    void Update()
+    {
+        // ゴールしていて、かつ観戦対象がいる場合
+        if (isGoaled && characterList.Count > 0)
+        {
+            // 例えば、マウスの左クリックや特定のボタンで次のプレイヤーに切り替え
+            if (Input.GetMouseButtonDown(0))
+            {
+                SwitchSpectateTarget();
+            }
+        }
+    }
+
+    private void SwitchSpectateTarget()
+    {
+        if (characterList.Count == 0) return;
+
+        // characterListのキー（Guid）をリスト化
+        spectatingKeys = new List<Guid>(characterList.Keys);
+
+        currentSpectateIndex = (currentSpectateIndex + 1) % spectatingKeys.Count;
+        Guid targetId = spectatingKeys[currentSpectateIndex];
+
+        if (characterList.TryGetValue(targetId, out GameObject targetObj))
+        {
+            CameraFollow.SetTarget(targetObj);
+            Debug.Log($"観戦対象を切り替え: {targetId}");
+        }
     }
     public async void JoinRoom()
     {
@@ -172,6 +204,38 @@ public class GameDirector : MonoBehaviour
         await roomModel.StartAsync();
     }
 
+    private async void GoalAsync()
+    {
+        isGoaled = true;
+
+        // 自分の車を消去
+        if (player != null)
+        {
+            player.transform.position = Vector3.zero;
+            player = null;
+        }
+
+        // 他にプレイヤーがいれば、最初の1人を映す
+        if (characterList.Count > 0)
+        {
+            spectatingKeys = new List<Guid>(characterList.Keys);
+            currentSpectateIndex = 0;
+            CameraFollow.SetTarget(characterList[spectatingKeys[0]]);
+
+            // UIなどで「観戦中」と出すと親切です
+            uis[6].SetActive(true);
+            uis[6].GetComponentInChildren<Text>().text = "GOAL! Spectating...";
+        }
+        else
+        {
+            // 自分一人しかいない場合はそのまま終了
+            uis[6].SetActive(true);
+            uis[6].GetComponentInChildren<Text>().text = "FINISH!";
+        }
+
+        await roomModel.GoalAsync(roomModel.ConnectionId);
+    }
+
     //ユーザーが入室した時の処理
     private void OnJoinedUser(JoinedUser user)
     {
@@ -181,7 +245,6 @@ public class GameDirector : MonoBehaviour
         }
 
         uis[0].SetActive(false); // Start
-        uis[1].SetActive(false); // Ready
 
         if (user.UserName == myName)
         {
@@ -324,6 +387,7 @@ public class GameDirector : MonoBehaviour
     IEnumerator GoalAfterDelay(float delay)
     {
         yield return new WaitForSeconds(1f);
+        init();
         LeaveRoom();
     }
 }

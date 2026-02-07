@@ -141,8 +141,9 @@ public class CarController : MonoBehaviour
     // --- ハンドリング制御 ---
     void HandleSteering(float speed, bool drifting)
     {
-        // 高速になるほど曲がりすぎないように制限（安定化）
-        float steerLimit = Mathf.Lerp(maxSteerAngle, 10f, speed / 200f);
+        // ドリフト中は制限を緩める（35度のまま、あるいは少しだけ絞る）
+        float minAngle = drifting ? 25f : 10f;
+        float steerLimit = Mathf.Lerp(maxSteerAngle, minAngle, speed / 200f);
         float finalSteer = steerInput * steerLimit;
 
         wheelFL.collider.steerAngle = finalSteer;

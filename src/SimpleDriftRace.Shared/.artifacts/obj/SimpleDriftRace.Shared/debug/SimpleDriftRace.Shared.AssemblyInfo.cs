@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SimpleDriftRace.Shared")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+23959fd1e7c9b61f9a6baed504d162c729e5506b")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2fab7a82821dba6e062834f1ebd93152a4630a5e")]
 [assembly: System.Reflection.AssemblyProductAttribute("SimpleDriftRace.Shared")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SimpleDriftRace.Shared")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
