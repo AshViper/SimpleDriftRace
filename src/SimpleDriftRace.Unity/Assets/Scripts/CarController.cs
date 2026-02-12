@@ -124,6 +124,7 @@ public class CarController : MonoBehaviour
         if (gameDirector != null)
         {
             rb.isKinematic = !gameDirector.GetStartFrag();
+            engineAudioSource.volume = 0;
             if (!gameDirector.GetStartFrag()) return;
         }
 

@@ -256,7 +256,7 @@ namespace Server.Services
             logger.LogInformation("Game Start");
 
             Vector3 startBasePos = new Vector3(-36f, 0f, -31.5f);
-            Vector3 startOffset = new Vector3(2f, 0f, 5f);
+            Vector3 startOffset = new Vector3(1f, 0f, 3f);
 
             int index = 0;
 

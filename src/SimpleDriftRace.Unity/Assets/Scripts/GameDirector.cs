@@ -212,6 +212,7 @@ public class GameDirector : MonoBehaviour
         if (player != null)
         {
             player.transform.position = Vector3.zero;
+            Destroy(player);
             player = null;
         }
 
@@ -387,6 +388,7 @@ public class GameDirector : MonoBehaviour
     IEnumerator GoalAfterDelay(float delay)
     {
         yield return new WaitForSeconds(1f);
+        if (player) Destroy(player);
         init();
         LeaveRoom();
     }
