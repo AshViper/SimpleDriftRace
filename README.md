@@ -1,38 +1,11 @@
-# MagicOnion.Template.Unity
+# MagicOnionを使った車のレースゲーム
 
-This repository provides a template for creating a project that has completed the [Quick Start with Unity and .NET Server](https://cysharp.github.io/MagicOnion/quickstart-unity).
+授業で作成した飛行機のレースゲームの復習がてら1から作り直したゲーム。
 
-This template based on the "Universal 3D" template using Unity 6000.0.36f1.
+接続や切断の関数の最適化ができたと思う。
 
-### How to set up
+ゲームの内容が最低限ではあるが十分にたのしめるものになった。
 
-You can download the archive file from GitHub and extract it, or create a repository from the GitHub template feature. The following is an example command to extract the template to the `MyApp` directory.
+Serverの環境をUGREENのNASを使って作成した。
 
-```bat
-REM Windows (cmd.exe or PowerShell)
-mkdir MyApp
-cd MyApp
-curl.exe -L -o - https://github.com/Cysharp/MagicOnion.Template.Unity/archive/refs/heads/main.tar.gz | tar xz -C . --strip-component 1
-```
-
-```bash
-# Bash, zsh
-mkdir MyApp
-cd MyApp
-curl -L -o - https://github.com/Cysharp/MagicOnion.Template.Unity/archive/refs/heads/main.tar.gz | tar xz -C . --strip-component 1
-```
-
-After extracting the source code, run `init.cmd` or `init.sh` with an arbitrary project name (e.g., `MyApp`). This script performs preparation such as renaming projects and files in the repository root.
-
-```bash
-init.cmd MyApp
-```
-
-```bash
-bash init.sh MyApp
-```
-
-After running the script, you can delete `init.sh` and `init.cmd` and `tools/RepoInitializer` that actually perform the rewriting process.
-
-### License
-The repository is provided under the [CC0 - Public Domain](https://creativecommons.org/publicdomain/zero/1.0/) license.
+なかなか使い勝手も悪くないような気がするがメモリの強化をしたい。
